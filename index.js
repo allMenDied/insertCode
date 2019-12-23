@@ -3,13 +3,13 @@ module.exports=function(content, map, meta) {
   return; // 当调用 callback() 时总是返回 undefined
 };
 function startTag(str,i){
-  if(str[i]=='<'&&str[i+1]=='n'&&str[i+2]=='o'&&str[i+3]=='d'&&str[i+4]=='e'){
+  if(str[i]=='/'&&str[i+1]=='/'&&str[i+2]=='<'&&str[i+3]=='n'&&str[i+4]=='o'&&str[i+5]=='d'&&str[i+6]=='e'&&str[i+7]=='>'){
     return true
   }
   return false;
 }
 function endTag(str,i){
-  if(str[i]=='<'&&str[i+1]=='/'&&str[i+2]=='n'&&str[i+3]=='o'&&str[i+4]=='d'&&str[i+5]=='e'){
+  if(str[i]=='/'&&str[i+1]=='/'&&str[i+2]=='<'&&str[i+3]=='/'&&str[i+4]=='n'&&str[i+5]=='o'&&str[i+6]=='d'&&str[i+7]=='e'&&str[i+8]=='>'){
     return true
   }
   return false;
@@ -25,13 +25,13 @@ function dosomething(str,options){
         let _result=run(content,options);
         tagstart=false;
         result+=_result;
-        i+=6;
+        i+=8;
       }
     }
     else if(startTag(str,i)){
       tagstart=true;
-      contentstartindex=i+6;
-      i+=5;
+      contentstartindex=i+8;
+      i+=7;
     }
     else{
       result+=str[i];
